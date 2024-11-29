@@ -8,7 +8,9 @@ from streamlit_extras.app_logo import add_logo
 import streamlit as st
 import pandas as pd
 import logging
+import requests
 logger = logging.getLogger(__name__)
+
 
 # Call the SideBarLinks from the nav module in the modules directory
 SideBarLinks()
@@ -34,6 +36,8 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 # col1, col2 = st.columns([5, 1])
 # col1.write("This is column 1")
 # col2.write("This is column 2")
+# data = requests.get("http://api:4000/r/all_students")
+print(data.text)
 df = pd.DataFrame(
     [
         {"Name": "John Doe"},
