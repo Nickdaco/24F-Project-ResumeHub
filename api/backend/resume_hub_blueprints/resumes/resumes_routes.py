@@ -85,6 +85,7 @@ def combine_multiple_rows_into_json_object(the_data):
     return list(resumes_dict.values())
 
 
+# GET /resumes
 @resumes.route('/resumes', methods=['GET'])
 def get_resumes():
     cursor = db.get_db().cursor()
@@ -135,6 +136,89 @@ def get_resumes():
     the_response = make_response(jsonify(list_of_resumes))
     the_response.status_code = 200
     return the_response
+
+
+# POST /resumes
+@resumes.route('/resumes', methods=['POST'])
+def post_resume():
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/skills={x,y,...,z}
+@resumes.route('/resumes/skills=<skills>', methods=['GET'])
+def get_resumes_by_skills(skills):
+    skills_list = skills.split(',')  # I think this is how you do it, don't trust me tho
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/company={x,y,...,z}
+@resumes.route('/resumes/company=<companies>', methods=['GET'])
+def get_resumes_by_company(companies):
+    company_list = companies.split(',')
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/exclude_user_ids={id1,id2,...,id3}
+@resumes.route('/resumes/exclude_user_ids=<exclude_ids>', methods=['GET'])
+def get_resumes_excluding_user_ids(exclude_ids):
+    exclude_ids_list = exclude_ids.split(',')
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/interview_at_company={company_id}
+@resumes.route('/resumes/interview_at_company=<int:company_id>', methods=['GET'])
+def get_resumes_by_interview_company_route(company_id):
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/degree_major={x}
+@resumes.route('/resumes/degree_major=<degree_major>', methods=['GET'])
+def get_resumes_by_degree_major(degree_major):
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/num_experiences={x}
+@resumes.route('/resumes/num_experiences=<int:num_experiences>', methods=['GET'])
+def get_resumes_by_num_experiences(num_experiences):
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/advisor_id={x}
+@resumes.route('/resumes/advisor_id=<int:advisor_id>', methods=['GET'])
+def get_resumes_by_advisor_id(advisor_id):
+    # TODO: Implement
+    return None
+
+
+# GET /resumes/{id}
+@resumes.route('/resumes/<int:resume_id>', methods=['GET'])
+def get_resume_by_id(resume_id):
+    # TODO: Implement
+    return None
+
+
+# PUT /resumes/{id}
+@resumes.route('/resumes/<int:resume_id>', methods=['PUT'])
+def update_resume(resume_id):
+    # TODO: Implement
+    return None
+
+
+# DELETE /resumes/{id}
+@resumes.route('/resumes/<int:resume_id>', methods=['DELETE'])
+def delete_resume(resume_id):
+    # TODO: Implement
+    return None
+
+
+
 
 
 @resumes.route('/all_students', methods=['GET'])
