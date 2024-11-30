@@ -218,9 +218,6 @@ def delete_resume(resume_id):
     return None
 
 
-
-
-
 @resumes.route('/all_students', methods=['GET'])
 def get_all_students():
     query = '''
