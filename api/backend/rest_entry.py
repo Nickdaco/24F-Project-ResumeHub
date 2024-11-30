@@ -3,11 +3,13 @@ from flask import Flask
 from backend.db_connection import db
 from backend.customers.customer_routes import customers
 from backend.products.products_routes import products
-from backend.student_resume.student_resume_routes import resumes
 from backend.simple.simple_routes import simple_routes
+from backend.resume_hub_blueprints.resumes.resumes_routes import resumes
+from backend.resume_hub_blueprints.companies.companies_routes import companies
+from backend.resume_hub_blueprints.interviews.interviews_routes import interviews
+from backend.resume_hub_blueprints.users.users_routes import users
 import os
 from dotenv import load_dotenv
-
 
 def create_app():
     app = Flask(__name__)
@@ -28,12 +30,10 @@ def create_app():
     # # these are for the DB object to be able to connect to MySQL.
     # app.config['MYSQL_DATABASE_USER'] = 'root'
     app.config['MYSQL_DATABASE_USER'] = os.getenv('DB_USER').strip()
-    # app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv(
-    #     'MYSQL_ROOT_PASSWORD').strip()
+    app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('MYSQL_ROOT_PASSWORD').strip()
     app.config['MYSQL_DATABASE_HOST'] = os.getenv('DB_HOST').strip()
     app.config['MYSQL_DATABASE_PORT'] = int(os.getenv('DB_PORT').strip())
-    # app.config['MYSQL_DATABASE_DB'] = os.getenv(
-    #     'DB_NAME').strip()  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = os.getenv('DB_NAME').strip()  # Change this to your DB name
 
     # Initialize the database object with the settings above.
     app.logger.info('current_app(): starting the database connection')
@@ -44,9 +44,15 @@ def create_app():
     app.logger.info(
         'current_app(): registering blueprints with Flask app object.')
     app.register_blueprint(simple_routes)
-    app.register_blueprint(customers,   url_prefix='/c')
-    app.register_blueprint(products,    url_prefix='/p')
-    app.register_blueprint(resumes,     url_prefix='/r')
+
+    # These are the from the original boilerplate.
+    # app.register_blueprint(customers, url_prefix='/c')
+    # app.register_blueprint(products, url_prefix='/p')
+
+    # These are ours.
+    app.register_blueprint(resumes, url_prefix='/r')
+    app.register_blueprint(companies, url_prefix='/c')
+    app.register_blueprint(users, url_prefix='/u')
 
     # Don't forget to return the app object
     return app
