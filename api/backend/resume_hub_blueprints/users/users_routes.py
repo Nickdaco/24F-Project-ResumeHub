@@ -17,21 +17,21 @@ def post_users():
     return None
 
 
-# GET /users/{id}
+# GET /users/{user_id}
 @users.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     # TODO: Implement
     return None
 
 
-# PUT /users/{id}
+# PUT /users/{user_id}
 @users.route('/users/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     # TODO: Implement
     return None
 
 
-# DELETE /users/{id}
+# DELETE /users/{user_id}
 @users.route('/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     # TODO: Implement

@@ -197,21 +197,21 @@ def get_resumes_by_advisor_id(advisor_id):
     return None
 
 
-# GET /resumes/{id}
+# GET /resumes/{resume_id}
 @resumes.route('/resumes/<int:resume_id>', methods=['GET'])
 def get_resume_by_id(resume_id):
     # TODO: Implement
     return None
 
 
-# PUT /resumes/{id}
+# PUT /resumes/{resume_id}
 @resumes.route('/resumes/<int:resume_id>', methods=['PUT'])
 def update_resume(resume_id):
     # TODO: Implement
     return None
 
 
-# DELETE /resumes/{id}
+# DELETE /resumes/{resume_id}
 @resumes.route('/resumes/<int:resume_id>', methods=['DELETE'])
 def delete_resume(resume_id):
     # TODO: Implement

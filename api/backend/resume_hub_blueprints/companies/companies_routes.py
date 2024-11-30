@@ -17,21 +17,21 @@ def post_company():
     return None
 
 
-# GET /companies/{id}
+# GET /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['GET'])
 def get_company(company_id):
     # TODO: Implement
     return None
 
 
-# PUT /companies/{id}
+# PUT /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['PUT'])
 def update_company(company_id):
     # TODO: Implement
     return None
 
 
-# DELETE /companies/{id}
+# DELETE /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['DELETE'])
 def delete_company(company_id):
     # TODO: Implement
