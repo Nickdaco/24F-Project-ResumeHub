@@ -28,7 +28,32 @@ def get_companies():
 # POST /companies
 @companies.route('/companies', methods=['POST'])
 def post_company():
-    # TODO: Implement
+    company_info= request.get_data
+    current_app.logger.info(companyinfo)
+
+    AcceptsInternational = company_info['AcceptsInternational']
+    City = company_info['City']
+    State = company_info['State']
+    Country= company_info['Country']
+    Name= company_info['Name']
+    isActive=company_info['isActive']
+
+    query = f'''
+        INSERT INTO Company( AcceptsInternational,
+                            City,
+                            State,
+                            Country,
+                            Name,
+                            isActive)
+        VALUES('{AcceptsInternational}',
+                '{City}',
+                '{State}',
+                '{Country}',
+                '{Name}',
+                '{isActive}')
+    '''
+
+    current_app.logger.info(query)
     return None
 
 
