@@ -209,6 +209,7 @@ CREATE TABLE IF NOT EXISTS Interview(
     CompanyId INT NOT NULL,
     StudentId BINARY(16) NOT NULL,
     InterviewDate DATE,
+    PassedInterview BOOL DEFAULT FALSE,
     PRIMARY KEY (Id),
     FOREIGN KEY (CompanyId) REFERENCES Company(Id)
                                   ON UPDATE CASCADE
