@@ -28,8 +28,8 @@ def get_companies():
 # POST /companies
 @companies.route('/companies', methods=['POST'])
 def post_company():
-    company_info= request.get_data
-    current_app.logger.info(companyinfo)
+    company_info= request.json
+    current_app.logger.info(company_info)
 
     AcceptsInternational = company_info['AcceptsInternational']
     City = company_info['City']
@@ -45,12 +45,12 @@ def post_company():
                             Country,
                             Name,
                             isActive)
-        VALUES('{AcceptsInternational}',
+        VALUES('{int(AcceptsInternational)}',
                 '{City}',
                 '{State}',
                 '{Country}',
                 '{Name}',
-                '{isActive}')
+                '{int(isActive)}')
     '''
 
     current_app.logger.info(query)
