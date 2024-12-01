@@ -87,8 +87,33 @@ def get_company(company_id):
 # PUT /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['PUT'])
 def update_company(company_id):
-    # TODO: Implement
-    return None
+    company_info= request.json
+    current_app.logger.info(company_info)
+
+    AcceptsInternational = company_info['AcceptsInternational']
+    City = company_info['City']
+    State = company_info['State']
+    Country= company_info['Country']
+    Name= company_info['Name']
+    isActive=company_info['isActive']
+
+    query = f'''
+        UPDATE Company
+        SET(AcceptsInternational='{int(AcceptsInternational)}',
+            City= '{City}',
+            State= '{State}',
+            Country= '{Country}',
+            Name= '{Name}',
+            isActive= '{int(isActive)}')
+        WHERE Id= {0}'''.format(company_id)
+
+    cursor=db.get_db().cursor()
+    cursor.execute(query)
+    theData=cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_case=200
+    return response
 
 
 # DELETE /companies/{company_id}
