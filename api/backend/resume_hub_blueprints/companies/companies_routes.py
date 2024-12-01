@@ -95,6 +95,7 @@ def update_company(company_id):
     State = company_info['State']
     Country= company_info['Country']
     Name= company_info['Name']
+    isActive= company_info['isActive']
 
     query = '''
         UPDATE Company
@@ -103,10 +104,11 @@ def update_company(company_id):
             State= %s,
             Country= %s,
             Name= %s
+            isActive=%s
         WHERE Id= {0}'''.format(company_id)
     
 
-    data=(AcceptsInternational,City,State,Country,Name)
+    data=(AcceptsInternational,City,State,Country,Name,isActive)
     
     cursor=db.get_db().cursor()
     cursor.execute(query,data)
@@ -120,5 +122,18 @@ def update_company(company_id):
 # DELETE /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['DELETE'])
 def delete_company(company_id):
-    # TODO: Implement
-    return None
+    company_info= request.json
+    current_app.logger.info(company_info)
+
+    query = '''
+        UPDATE Company
+        SET IsActive= 0
+        WHERE Id= {0}'''.format(company_id)
+    
+    cursor=db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    response = jsonify("Company inactive")
+    response.status_case=200
+    return response
