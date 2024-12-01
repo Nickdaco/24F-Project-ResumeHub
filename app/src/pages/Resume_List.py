@@ -14,36 +14,19 @@ logger = logging.getLogger(__name__)
 
 # Call the SideBarLinks from the nav module in the modules directory
 SideBarLinks()
-# showSidebarNavigation = false
 
 # set the header of the page
 st.header('Student Resumes')
 
-#
 # You can access the session state to make a more customized/personalized app experience
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 
-# def student_resume(id):
-#     if st.button('View Resumes',
-#                  type='primary',
-#                  use_container_width=True,
-#                  key=id):
-#         st.switch_page('pages/Resume_List.py')
+data = requests.get("http://api:4000/r/all_students")
 
-
-# with st.echo(code_location='above'):
-# col1, col2 = st.columns([5, 1])
-# col1.write("This is column 1")
-# col2.write("This is column 2")
-# data = requests.get("http://api:4000/r/all_students")
-print(data.text)
 df = pd.DataFrame(
-    [
-        {"Name": "John Doe"},
-        {"Name": "Jane Doe"},
-        {"Name": "Josh Doe"},
-    ]
+    [{"Name": d["Name"]}
+     for d in data.json()]
 )
 
 event = st.dataframe(
@@ -56,58 +39,13 @@ event = st.dataframe(
 if len(event.selection['rows']):
     selected_row = event.selection['rows'][0]
     name = df.iloc[selected_row]['Name']
+    name_id = [{x["Name"]: x["Id"]} for x in data.json() if x["Name"] == name]
+    # TODO: Error Page? Maybe add the uuid at the end of the name as this happens when a student with the same name gets added
+    if len(name_id) > 1:
+        print("Error")
 
-    st.session_state['resume_info'] = {'resume_name': name,
-                                       'eduction_info': [{
-                                           "name": "University College",
-                                           "degree": "Study of Studies",
-                                           "Field": "Eduction",
-                                           "StartDate": "11/28/2024",
-                                           "EndDate": "11/29/2024",
-                                           "Description": "I Studied"}],
-                                       'experience_info': [{
-                                           "company_name": "Company",
-                                           "position_title": "Manager",
-                                           "city": "NYC",
-                                           "state": "NY",
-                                           "StartDate": "11/28/2024",
-                                           "EndDate": "11/29/2024",
-                                           "Description": "I Worked"
-                                       }],
-                                       'skills_info': [{
-                                           "name": "Writing",
-                                           "proficiency": "Experienced"
-                                       }]
-                                       }
+    resume_info = requests.get(
+        f'http://api:4000/r/resumes/{name_id[0][name]}').json()
+
+    st.session_state['resume_info'] = resume_info[0]
     st.page_link('pages/resume.py', label=f'Goto {name} Page', icon='📝')
-
-# with col1:
-# st.dataframe(df, use_container_width=True, column_config={
-#     "Resume Url": st.column_config.LinkColumn("Resume Url"),
-# })
-
-# with col2:
-#     # size_of = df.size()
-#     for i in range(6):
-#         st.button("Click me", key=i)
-# get the countries from the world bank data
-# with st.echo(code_location='above'):
-#     countries: pd.DataFrame = wb.get_countries()
-
-#     st.dataframe(countries)
-
-# # the with statment shows the code for this block above it
-# with st.echo(code_location='above'):
-#     arr = np.random.normal(1, 1, size=100)
-#     test_plot, ax = plt.subplots()
-#     ax.hist(arr, bins=20)
-
-#     st.pyplot(test_plot)
-
-
-# with st.echo(code_location='above'):
-#     slim_countries = countries[countries['incomeLevel'] != 'Aggregates']
-#     data_crosstab = pd.crosstab(slim_countries['region'],
-#                                 slim_countries['incomeLevel'],
-#                                 margins=False)
-#     st.table(data_crosstab)
