@@ -54,7 +54,15 @@ def post_company():
     '''
 
     current_app.logger.info(query)
-    return None
+
+    cursor= db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    response=make_response("Successfully added company")
+    response.status_code=200
+
+    return response
 
 
 # GET /companies/{company_id}
