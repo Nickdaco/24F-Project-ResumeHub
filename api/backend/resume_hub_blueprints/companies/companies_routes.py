@@ -72,14 +72,13 @@ def get_company(company_id):
     SELECT *
     FROM Company
     WHERE Id= {0}'''.format(company_id)
-    
 
-    cursor=db.get_db().cursor()
+    cursor = db.get_db().cursor()
     cursor.execute(query)
-    theData=cursor.fetchall()
+    theData = cursor.fetchall()
 
     response = make_response(jsonify(theData))
-    response.status_case=200
+    response.status_case = 200
     return response
 
 
@@ -122,7 +121,7 @@ def update_company(company_id):
 # DELETE /companies/{company_id}
 @companies.route('/companies/<int:company_id>', methods=['DELETE'])
 def delete_company(company_id):
-    company_info= request.json
+    company_info = request.json
     current_app.logger.info(company_info)
 
     query = '''
