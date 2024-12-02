@@ -36,6 +36,9 @@ if st.button('Update my resume', type='primary', use_container_width=True):
 if st.button('Add interview information', type='primary', use_container_width=True):
     st.switch_page('pages/64_Add_Interview.py')
 
+if st.button('View All Companies', type='primary', use_container_width=True):
+    st.switch_page('pages/66_View_Companies.py')
+
 # As a student, I need to be able to see what skills a student has on their resume so
 # that I can invest time into new skills for co-op applications
 

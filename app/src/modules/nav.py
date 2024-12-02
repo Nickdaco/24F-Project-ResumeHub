@@ -55,6 +55,12 @@ def AdminPageNav():
         "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
     )
 
+# ************
+# All Personas
+# ************
+def view_companies_page_nav():
+    st.sidebar.page_link("pages/66_View_Companies.py", label="View Companies", icon="🏢")
+
 
 # *********
 # Recruiter
@@ -140,20 +146,25 @@ def SideBarLinks(show_home=False):
         # ********************
         if st.session_state["role"] == "recruiter":
             recruiter_home_nav()
+            view_companies_page_nav()
 
         if st.session_state["role"] == "system_admin":
             system_admin_home_nav()
+            view_companies_page_nav()
 
         if st.session_state["role"] == "student":
             student_home_nav()
             student_add_resume()
             student_update_resume()
+            view_companies_page_nav()
 
         if st.session_state["role"] == "coop_advisor":
             coop_advisor_home_nav()
+            view_companies_page_nav()
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
+
 
     if st.session_state["authenticated"]:
         # Always show a logout button if there is a logged in user
