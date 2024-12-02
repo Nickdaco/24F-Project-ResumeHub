@@ -40,7 +40,8 @@ def combine_multiple_rows_into_json_object(the_data):
             }
 
         if row['SkillName']:
-            resumes_dict[resume_id]['Skills'].add((row['SkillName'], row['SkillProficiency']))
+            resumes_dict[resume_id]['Skills'].add(
+                (row['SkillName'], row['SkillProficiency']))
 
         if row['ExperienceCompanyName']:
             resumes_dict[resume_id]['Experience'].add((
@@ -172,7 +173,8 @@ def post_resume():
 
     resumes_insert_query = f'''
         INSERT INTO Resumes (StudentId, City, State, Country, Email, Name)
-        VALUES (UUID_TO_BIN('{student_uuid}'), '{city}', '{state}', '{country}', '{email}', '{name}');
+        VALUES (UUID_TO_BIN('{student_uuid}'), '{city}',
+                '{state}', '{country}', '{email}', '{name}');
     '''
 
     cursor = db.get_db().cursor()
@@ -184,11 +186,13 @@ def post_resume():
         skill_name = skill['Name']
         skill_proficiency = skill['Proficiency']
 
-        cursor.execute('INSERT INTO Skill (Name, Proficiency) VALUES (%s, %s)', (skill_name, skill_proficiency))
+        cursor.execute('INSERT INTO Skill (Name, Proficiency) VALUES (%s, %s)',
+                       (skill_name, skill_proficiency))
         skill_id = cursor.lastrowid
 
         # connect skill to resume
-        cursor.execute('INSERT INTO ResumeSkill (SkillId, ResumeId) VALUES (%s, %s)', (skill_id, resume_id))
+        cursor.execute(
+            'INSERT INTO ResumeSkill (SkillId, ResumeId) VALUES (%s, %s)', (skill_id, resume_id))
 
     education = resume_info.get('Education', [])
     # Insert into education sub-table
@@ -205,7 +209,8 @@ def post_resume():
         education_id = cursor.lastrowid
 
         # connect education to resume
-        cursor.execute('INSERT INTO ResumeEducation (EducationId, ResumeId) VALUES (%s, %s)', (education_id, resume_id))
+        cursor.execute(
+            'INSERT INTO ResumeEducation (EducationId, ResumeId) VALUES (%s, %s)', (education_id, resume_id))
 
     experience = resume_info.get('Experience', [])
     for exp in experience:
@@ -213,11 +218,12 @@ def post_resume():
 
         # Create company in database if does not exist
         if not company_exists_in_db(company_name):
-            cursor.execute(f"INSERT INTO Company (Name) VALUES ('{company_name}')")
+            cursor.execute(
+                f"INSERT INTO Company (Name) VALUES ('{company_name}')")
 
         # Resume company bridge table
         resume_company_bridge_table_query = f'''
-            INSERT INTO ResumeCompany (CompanyId, ResumeId)  
+            INSERT INTO ResumeCompany (CompanyId, ResumeId)
             VALUES ((SELECT Id FROM Company WHERE Name = '{company_name}'), {resume_id})
         '''
         cursor.execute(resume_company_bridge_table_query)
@@ -340,7 +346,8 @@ def get_resumes_by_interview_company_route(company_id):
     # Get all resumes from users who got interviews at company id
     # get uuids of students with interviews there
 
-    query = f"SELECT BIN_TO_UUID(StudentId) as StudentId FROM Interview WHERE CompanyId = {company_id}"
+    query = f"""SELECT BIN_TO_UUID(StudentId) as StudentId FROM Interview WHERE CompanyId = {
+        company_id}"""
 
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -490,7 +497,7 @@ def update_resume(resume_id):
 
     resumes_update_query = f'''
         UPDATE Resumes
-        SET 
+        SET
             City = '{city}',
             State = '{state}',
             Country = '{country}',
@@ -525,11 +532,66 @@ def delete_resume(resume_id):
     return response
 
 
+@resumes.route('/resumes/<user_id>', methods=['GET'])
+def get_by_user_id(user_id: str):
+    cursor = db.get_db().cursor()
+    query = f'''
+    SELECT DISTINCT
+        r.ResumeId AS ResumeID,
+        r.Name AS ResumeName,
+        r.Email AS ResumeEmail,
+        r.City AS ResumeCity,
+        r.State AS ResumeState,
+        r.Country AS ResumeCountry,
+        r.DateCreated AS ResumeDateCreated,
+        r.LastUpdated AS ResumeLastUpdated,
+        s.GithubLink AS StudentGithubLink,
+        s.LinkedInLink AS StudentLinkedInLink,
+        s.University AS StudentUniversity,
+        s.GraduationYear AS StudentGraduationYear,
+        s.CurrentCity AS StudentCity,
+        s.CurrentState AS StudentState,
+        u.Name AS StudentName,
+        u.Email AS StudentEmail,
+        sk.Name AS SkillName,
+        sk.Proficiency AS SkillProficiency,
+        ex.CompanyName AS ExperienceCompanyName,
+        ex.Title AS ExperienceTitle,
+        ex.StartDate AS ExperienceStartDate,
+        ex.EndDate AS ExperienceEndDate,
+        ex.Description AS ExperienceDescription,
+        ed.InstitutionName AS EducationInstitution,
+        ed.Degree AS EducationDegree,
+        ed.StartDate AS EducationStartDate,
+        ed.EndDate AS EducationEndDate,
+        ed.Description AS EducationDescription
+    FROM
+        Resumes r
+        JOIN Student s ON r.StudentId = s.UserId
+        JOIN User u ON s.UserId = u.UUID
+        LEFT JOIN ResumeSkill rs ON r.ResumeId = rs.ResumeId
+        LEFT JOIN Skill sk ON rs.SkillId = sk.Id
+        LEFT JOIN ResumeExperience re ON r.ResumeId = re.ResumeId
+        LEFT JOIN Experience ex ON re.ExperienceId = ex.Id
+        LEFT JOIN ResumeEducation reu ON r.ResumeId = reu.ResumeId
+        LEFT JOIN Education ed ON reu.EducationId = ed.Id
+    WHERE LOWER(HEX(s.UserId)) = '{user_id}';
+    '''
+    cursor.execute(query)
+
+    the_data = cursor.fetchall()
+    list_of_resumes = combine_multiple_rows_into_json_object(the_data)
+    the_response = make_response(jsonify(list_of_resumes))
+    the_response.status_code = 200
+    return the_response
+
 # Extra endpoint left over
+
+
 @resumes.route('/all_students', methods=['GET'])
 def get_all_students():
     query = '''
-        select s.UserId as id, R.Name 
+        select LOWER(HEX(s.UserId)) as id, R.Name 
         from ResumeDB.Student as s 
         join ResumeDB.Resumes R on s.UserId = R.StudentId
     '''
@@ -544,6 +606,7 @@ def get_all_students():
     # Python Dictionary
     theData = cursor.fetchall()
 
+    print(theData)
     # Create a HTTP Response object and add results of the query to it
     # after "jasonify"-ing it.
     response = make_response(jsonify(theData))
