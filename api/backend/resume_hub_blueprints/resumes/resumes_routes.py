@@ -32,8 +32,8 @@ def combine_multiple_rows_into_json_object(the_data):
                 "LinkedInLink": row['StudentLinkedInLink'],
                 "University": row['StudentUniversity'],
                 "GraduationYear": row['StudentGraduationYear'],
-                "City": row['StudentCity'],
-                "State": row['StudentState'],
+                "City": row['ResumeCity'],
+                "State": row['ResumeState'],
                 "Skills": set(),  # Set to avoid dupes
                 "Experience": set(),
                 "Education": set()

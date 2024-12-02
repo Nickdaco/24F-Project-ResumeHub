@@ -23,6 +23,8 @@ if st.button('Upload a new resume', type='primary', use_container_width=True):
 
 # As a student, I need to be able to update my resume so that I can keep my resume
 # up to date with the most recent information.
+if st.button('Update my resume', type='primary', use_container_width=True):
+    st.switch_page('pages/62_Update_Resume.py')
 
 # As a student, I need to be able to search for resumes that have experience in a co-op
 # I am applying for so that I can potentially reach out for information on the interview process.

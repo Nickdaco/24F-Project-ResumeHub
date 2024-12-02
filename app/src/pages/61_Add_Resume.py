@@ -33,6 +33,7 @@ if 'education' not in st.session_state:
 if 'experience' not in st.session_state:
     st.session_state.experience = []
 
+
 def render_list_section(section_key, fields, section_title):
     st.write(f"#### {section_title}")
     
@@ -91,6 +92,7 @@ def generate_final_json():
         "Experience": st.session_state.experience
     }
 
+
 st.write("#### Contact Information")
 col1, col2 = st.columns(2)
 with col1:
@@ -98,7 +100,7 @@ with col1:
     st.text_input("Email", key="email")
 with col2:
     st.text_input("City", key="city")
-    st.text_input("State", key="state")
+    st.text_input('State (e.x. "MA")', key="state")
     st.text_input("Country", key="country")
 
 render_list_section('skills', ['Name', 'Proficiency'], 'Skills')

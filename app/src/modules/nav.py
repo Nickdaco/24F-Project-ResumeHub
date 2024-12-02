@@ -78,9 +78,15 @@ def system_admin_home_nav():
 # Student
 # *******
 def student_home_nav():
-    st.sidebar.page_link(
-        "pages/60_Student_Home.py", label="Student Home", icon="👤"
-    )
+    st.sidebar.page_link("pages/60_Student_Home.py", label="Student Home", icon="👤")
+
+
+def student_add_resume():
+    st.sidebar.page_link("pages/61_Add_Resume.py", label="Add Resume", icon="🧾")
+
+
+def student_update_resume():
+    st.sidebar.page_link('pages/62_Update_Resume.py', label="Update Resume", icon="✏️")
 
 
 # *************
@@ -140,6 +146,8 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] == "student":
             student_home_nav()
+            student_add_resume()
+            student_update_resume()
 
         if st.session_state["role"] == "coop_advisor":
             coop_advisor_home_nav()
