@@ -33,6 +33,8 @@ if st.button('Update my resume', type='primary', use_container_width=True):
 
 # As a student, I need to be able to add what companies I got interviews at so that
 # other people can view my resume to improve theirs.
+if st.button('Add interview information', type='primary', use_container_width=True):
+    st.switch_page('pages/64_Add_Interview.py')
 
 # As a student, I need to be able to see what skills a student has on their resume so
 # that I can invest time into new skills for co-op applications
