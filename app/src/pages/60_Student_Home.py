@@ -21,7 +21,7 @@ if st.button('Upload a new resume', type='primary', use_container_width=True):
 # As a student, I need to be able to look at resumes other students have posted
 # so that I can see what has successfully worked with other students.
 if st.button('View All Resumes', type='primary', use_container_width=True):
-    st.switch_page('pages/62_View_Resumes.py')
+    st.switch_page('pages/63_View_Resumes.py')
 
 # As a student, I need to be able to update my resume so that I can keep my resume
 # up to date with the most recent information.
