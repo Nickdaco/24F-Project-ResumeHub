@@ -262,7 +262,8 @@ VALUES
     ('4085559876', 'Zoey Taylor', 'zoeytaylor@example.com', 'Inactive', 4),
 
     ('8055559876', 'Ethan Underwood', 'ethanunderwood@example.com', 'Active', 4),
-    ('8185559876', 'Aria Vargas', 'ariavargas@example.com', 'Active', 4);
+    ('8185559876', 'Aria Vargas', 'ariavargas@example.com', 'Active', 4),
+    ('7321234567', 'Kyle Mitchell', 'kylemitchell@example.com', 'Active', 4);
 
 -- Insert Companies
 INSERT INTO Company (AcceptsInternational, City, State, Country, Name)
