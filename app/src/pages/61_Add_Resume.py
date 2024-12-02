@@ -67,9 +67,20 @@ def render_list_section(section_key, fields, section_title):
             add_entry(section_key)
             st.rerun()
 
+
 def generate_final_json():
+    # Kyle’s UUID doesn’t stay the same (it gets reset when the docker goes up) but we can derive it by querying for
+    # all users, then looping through the list to find credentials that match Kyles’ name or email. its a sloppy
+    # solution but it will have to do, bc otherwise we would store the ID for each account created
+
+    all_users = requests.get(f'http://api:4000/u/users').json()
+    student_id = "INVALID"
+    for user in all_users:
+        if user["Name"] == "Kyle Mitchell":
+            student_id = user["UUID"]
+
     return {
-        "StudentId": st.session_state.student_id,
+        "StudentId": student_id,
         "Name": st.session_state.name,
         "Email": st.session_state.email,
         "City": st.session_state.city,
@@ -80,7 +91,6 @@ def generate_final_json():
         "Experience": st.session_state.experience
     }
 
-st.text_input("Student ID", key="student_id")
 st.write("#### Contact Information")
 col1, col2 = st.columns(2)
 with col1:
