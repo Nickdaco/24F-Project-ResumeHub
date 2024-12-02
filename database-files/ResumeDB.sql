@@ -344,7 +344,8 @@ VALUES
    ((SELECT UUID FROM User WHERE Email = 'zoeytaylor@example.com'), 'https://github.com/zoeytaylor', 'https://linkedin.com/in/zoeytaylor', 'Stanford University', 2024, 'San Francisco', 'CA', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'miab@example.com'))),
 
    ((SELECT UUID FROM User WHERE Email = 'ethanunderwood@example.com'), 'https://github.com/ethanunderwood', 'https://linkedin.com/in/ethanunderwood', 'Stanford University', 2024, 'San Francisco', 'CA', NULL),
-   ((SELECT UUID FROM User WHERE Email = 'ariavargas@example.com'), 'https://github.com/ariavargas', 'https://linkedin.com/in/ariavargas', 'Northeastern University', 2025, 'Boston', 'MA', NULL);
+   ((SELECT UUID FROM User WHERE Email = 'ariavargas@example.com'), 'https://github.com/ariavargas', 'https://linkedin.com/in/ariavargas', 'Northeastern University', 2025, 'Boston', 'MA', NULL),
+   ((SELECT UUID FROM User WHERE Email = 'kylemitchell@example.com'), 'https://github.com/kylemitchell', 'https://linkedin.com/in/kylemitchell', 'Northeastern University', 2025, 'Boston', 'MA', NULL);
 
 
 -- Insert Resumes
@@ -458,18 +459,18 @@ VALUES
 -- Insert Education
 INSERT INTO Education (StartDate, EndDate, InstitutionName, Description, Degree)
 VALUES
-   ('2020-09-01', '2024-05-15', 'Harvard University', 'Studied Computer Science with a focus on software engineering and AI.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Stanford University', 'Studied Software Engineering with a focus on algorithms and machine learning.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'MIT', 'Studied Computer Science, specializing in artificial intelligence and data science.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'University of California, Berkeley', 'Studied Computer Science with a focus on cloud computing and cybersecurity.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Princeton University', 'Studied Electrical Engineering and Computer Science.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Yale University', 'Studied Computer Science with a focus on network systems and data structures.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'University of Chicago', 'Studied Data Science and Machine Learning.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Columbia University', 'Studied Software Engineering with a focus on AI and blockchain technology.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'University of Southern California', 'Studied Computer Science with an emphasis on mobile app development.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Harvard University', 'Studied Data Science with an emphasis on statistical modeling and machine learning.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Stanford University', 'Studied Computer Science with a focus on software systems and AI.', 'Bachelor of Science'),
-   ('2020-09-01', '2024-05-15', 'Northeastern University', 'Studied Computer Science with a focus on cybersecurity and machine learning.', 'Bachelor of Science');
+   ('2020-09-01', '2024-05-15', 'Harvard University', 'Studied Computer Science with a focus on software engineering and AI.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Stanford University', 'Studied Software Engineering with a focus on algorithms and machine learning.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'MIT', 'Studied Computer Science, specializing in artificial intelligence and data science.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'University of California, Berkeley', 'Studied Computer Science with a focus on cloud computing and cybersecurity.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Princeton University', 'Studied Electrical Engineering and Computer Science.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Yale University', 'Studied Computer Science with a focus on network systems and data structures.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'University of Chicago', 'Studied Data Science and Machine Learning.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Columbia University', 'Studied Software Engineering with a focus on AI and blockchain technology.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'University of Southern California', 'Studied Computer Science with an emphasis on mobile app development.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Harvard University', 'Studied Data Science with an emphasis on statistical modeling and machine learning.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Stanford University', 'Studied Computer Science with a focus on software systems and AI.', 'B.S. Computer Science'),
+   ('2020-09-01', '2024-05-15', 'Northeastern University', 'Studied Computer Science with a focus on cybersecurity and machine learning.', 'B.S. Computer Science');
 
 
 -- Insert Resume Education
