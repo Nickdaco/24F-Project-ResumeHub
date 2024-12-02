@@ -23,7 +23,6 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 
 
 data = requests.get("http://api:4000/r/all_students")
-
 df = pd.DataFrame(
     [{"Name": d["Name"]}
      for d in data.json()]
@@ -39,7 +38,7 @@ event = st.dataframe(
 if len(event.selection['rows']):
     selected_row = event.selection['rows'][0]
     name = df.iloc[selected_row]['Name']
-    name_id = [{x["Name"]: x["Id"]} for x in data.json() if x["Name"] == name]
+    name_id = [{x["Name"]: x["id"]} for x in data.json() if x["Name"] == name]
     # TODO: Error Page? Maybe add the uuid at the end of the name as this happens when a student with the same name gets added
     if len(name_id) > 1:
         print("Error")
