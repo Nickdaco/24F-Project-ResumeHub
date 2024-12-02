@@ -1,4 +1,6 @@
 import logging
+
+import requests
 import streamlit as st
 from modules.nav import SideBarLinks
 import json
@@ -13,8 +15,13 @@ st.header('Add new resume')
 def add_entry(session_state_key):
     entry = {}
     for field in st.session_state[f'{session_state_key}_fields']:
-        entry[field] = st.session_state[f'{session_state_key}_{field}']
+        value = st.session_state[f'{session_state_key}_{field}']
+        if field in ['StartDate', 'EndDate'] and value:
+            entry[field] = value.strftime('%Y-%m-%d')
+        else:
+            entry[field] = value
     st.session_state[session_state_key].append(entry)
+
 
 def remove_entry(session_state_key, index):
     del st.session_state[session_state_key][index]
@@ -91,4 +98,13 @@ render_list_section('experience', ['CompanyName', 'Title', 'StartDate', 'EndDate
 if st.button("Upload Resume"):
     final_json = generate_final_json()
     st.json(final_json)
-    st.switch_page("pages/60_Student_Home.py")
+
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(
+        "http://api:4000/r/resumes",
+        headers=headers,
+        data=json.dumps(final_json).encode(),
+    )
+    response.raise_for_status()
+
+    # st.switch_page("pages/60_Student_Home.py")
