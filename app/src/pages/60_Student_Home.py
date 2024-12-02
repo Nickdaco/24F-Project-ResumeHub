@@ -30,6 +30,9 @@ if st.button('Update my resume', type='primary', use_container_width=True):
 
 # As a student, I need to be able to search for resumes that have experience in a co-op
 # I am applying for so that I can potentially reach out for information on the interview process.
+if st.button('Search for Resume By Company', type='primary', use_container_width=True):
+    st.switch_page('pages/65_View_Resumes_By_Company.py')
+
 
 # As a student, I need to be able to add what companies I got interviews at so that
 # other people can view my resume to improve theirs.
