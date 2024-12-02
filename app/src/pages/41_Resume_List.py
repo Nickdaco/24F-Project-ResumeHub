@@ -48,4 +48,4 @@ if len(event.selection['rows']):
         f'http://api:4000/r/resumes/{name_id[0][name]}').json()
 
     st.session_state['resume_info'] = resume_info[0]
-    st.page_link('pages/resume.py', label=f'Goto {name} Page', icon='📝')
+    st.page_link('pages/42_Resume.py', label=f'Goto {name} Page', icon='📝')

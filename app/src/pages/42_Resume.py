@@ -3,13 +3,12 @@ import streamlit as st
 
 SideBarLinks()
 
-
 st.header(f"{st.session_state['resume_info']['Name']}'s Resume")
-for eduction in st.session_state['resume_info']['Education']:
-    st.write(f"### University: {eduction['Institution']}")
-    st.write(f"Type of Degree: {eduction['Degree']}")
-    st.write(f"From: {eduction['StartDate']} - To: {eduction['EndDate']}")
-    st.write(f"Description: {eduction['Description']}")
+for education in st.session_state['resume_info']['Education']:
+    st.write(f"### University: {education['Institution']}")
+    st.write(f"Type of Degree: {education['Degree']}")
+    st.write(f"From: {education['StartDate']} - To: {education['EndDate']}")
+    st.write(f"Description: {education['Description']}")
     st.write("")
 
 st.divider()
@@ -17,7 +16,7 @@ st.divider()
 for experience in st.session_state['resume_info']['Experience']:
     st.write(f"### Company Name: {experience['CompanyName']}")
     st.write(f"Title: {experience['Title']}")
-    st.write(f"From: {experience['StartDate']} - To: {eduction['EndDate']}")
+    st.write(f"From: {experience['StartDate']} - To: {education['EndDate']}")
     st.write(f"Description: {experience['Description']}")
     st.write("")
 
