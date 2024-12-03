@@ -402,7 +402,7 @@ def get_resumes_by_degree_major(degree_major):
     already_added = []
     for resume in list_of_resumes:
         for education in resume["Education"]:
-            if education["Degree"].lower() == degree_major.lower():
+            if degree_major.lower() in education["Degree"].lower() or degree_major.lower() in education["Description"].lower():
                 if resume["ResumeID"] not in already_added:
                     return_value.append(resume)
                     already_added.append(resume["ResumeID"])
