@@ -10,7 +10,11 @@ SideBarLinks()
 st.header(f"Hi, {st.session_state['first_name']}.")
 st.header("View your students resumes")
 
-UUID=st.session_state['UUID']
+all_users = requests.get(f'http://api:4000/u/users').json()
+UUID = "INVALID"
+for user in all_users:
+    if user["Name"] == "Sam Miller":
+        UUID = user["UUID"]
 
 resumes = requests.get(f'http://api:4000/r/resumes/advisor_id/{UUID}').json()
 for resume in resumes:

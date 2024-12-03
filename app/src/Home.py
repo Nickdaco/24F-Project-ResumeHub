@@ -66,7 +66,6 @@ if st.button('Act as Kyle, a student', type='primary', use_container_width=True)
 if st.button('Act as Sam, a co-op advisor', type='primary', use_container_width=True):
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'coop_advisor'
-    st.session_state['UUID'] = '6195559876'
     st.session_state['first_name'] = 'Sam'
     st.switch_page('pages/70_Coop_Advisor_Home.py')
 
