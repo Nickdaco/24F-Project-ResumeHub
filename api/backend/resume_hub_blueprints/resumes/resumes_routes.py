@@ -444,7 +444,7 @@ def get_resumes_by_advisor_id(advisor_uuid):
     WHERE StudentId IN (
         SELECT UserId
         FROM Student
-        WHERE AdvisorID = UUID_TO_BIN('{advisor_uuid}')
+        WHERE AdvisorID = '{advisor_uuid}'
     )
     """
 
