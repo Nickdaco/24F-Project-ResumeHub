@@ -240,7 +240,7 @@ VALUES
 
     # Co-op advisors
     ('6195559876', 'James Foster', 'jamesfoster@example.com', 'Inactive', 3),
-    ('7185559876', 'Isabella Green', 'isabellagreen@example.com', 'Active', 3),
+    ('7185559876', 'Sam Miller', 'sam@aol.com', 'Active', 3),
     ('8185559876', 'Liam Harris', 'liamharris@example.com', 'Active', 3),
     ('9255559876', 'Mia Ibarra', 'miab@example.com', 'Inactive', 3), 
 
@@ -318,7 +318,7 @@ VALUES
 INSERT INTO CoopAdvisor (UserId)
 SELECT UUID FROM User WHERE Email = 'jamesfoster@example.com';
 INSERT INTO CoopAdvisor (UserId)
-SELECT UUID FROM User WHERE Email = 'isabellagreen@example.com';
+SELECT UUID FROM User WHERE Email = 'sam@aol.com';
 INSERT INTO CoopAdvisor (UserId)
 SELECT UUID FROM User WHERE Email = 'liamharris@example.com';
 INSERT INTO CoopAdvisor (UserId)
@@ -331,9 +331,9 @@ VALUES
    ((SELECT UUID FROM User WHERE Email = 'emilyking@example.com'), 'https://github.com/emilyking', 'https://linkedin.com/in/emilyking', 'Stanford University', 2024, 'Palo Alto', 'CA', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'sam@aol.com'))),
    ((SELECT UUID FROM User WHERE Email = 'benjaminlee@example.com'), 'https://github.com/benjaminlee', 'https://linkedin.com/in/benjaminlee', 'MIT', 2024, 'Boston', 'MA', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'sam@aol.com'))),
 
-   ((SELECT UUID FROM User WHERE Email = 'grace.mitchell@example.com'), 'https://github.com/gracemitchell', 'https://linkedin.com/in/gracemitchell', 'University of California, Berkeley', 2024, 'Berkeley', 'CA', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'isabellagreen@example.com'))),
-   ((SELECT UUID FROM User WHERE Email = 'alexmoore@example.com'), 'https://github.com/alexmoore', 'https://linkedin.com/in/alexmoore', 'Princeton University', 2024, 'Princeton', 'NJ', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'isabellagreen@example.com'))),
-   ((SELECT UUID FROM User WHERE Email = 'charlottenelson@example.com'), 'https://github.com/charlottenelson', 'https://linkedin.com/in/charlottenelson', 'Yale University', 2024, 'New Haven', 'CT', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'isabellagreen@example.com'))),
+   ((SELECT UUID FROM User WHERE Email = 'grace.mitchell@example.com'), 'https://github.com/gracemitchell', 'https://linkedin.com/in/gracemitchell', 'University of California, Berkeley', 2024, 'Berkeley', 'CA', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'sam@aol.com'))),
+   ((SELECT UUID FROM User WHERE Email = 'alexmoore@example.com'), 'https://github.com/alexmoore', 'https://linkedin.com/in/alexmoore', 'Princeton University', 2024, 'Princeton', 'NJ', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'sam@aol.com'))),
+   ((SELECT UUID FROM User WHERE Email = 'charlottenelson@example.com'), 'https://github.com/charlottenelson', 'https://linkedin.com/in/charlottenelson', 'Yale University', 2024, 'New Haven', 'CT', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'sam@aol.com'))),
 
    ((SELECT UUID FROM User WHERE Email = 'henryo@example.com'), 'https://github.com/henryobrien', 'https://linkedin.com/in/henryobrien', 'University of Chicago', 2024, 'Chicago', 'IL', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'liamharris@example.com'))),
    ((SELECT UUID FROM User WHERE Email = 'scarlett.perez@example.com'), 'https://github.com/scarlettperez', 'https://linkedin.com/in/scarlettperez', 'Columbia University', 2024, 'New York', 'NY', (SELECT UserId FROM CoopAdvisor WHERE UserId = (SELECT UUID FROM User WHERE Email = 'liamharris@example.com'))),
