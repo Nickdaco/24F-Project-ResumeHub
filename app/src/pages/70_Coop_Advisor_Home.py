@@ -21,6 +21,12 @@ if st.button('View Resumes By Degree',
              use_container_width=True):
     st.switch_page('pages/71_View_Resumes_By_Degree.py')
 
+if st.button('View My Student\'s Interviews',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/75_View_Interviews_By_Student.py')
+
+
 if st.button('View My Student\'s Resumes',
              type='primary',
              use_container_width=True):
