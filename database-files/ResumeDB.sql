@@ -239,11 +239,10 @@ VALUES
     ('5105559876', 'Sophia Evans', 'sophiaevans@salesforce.com', 'Active', 2),
 
     # Co-op advisors
-    ('5123212144' 'Sam Miller', 'sam@aol.com', 'Active', 3)
     ('6195559876', 'James Foster', 'jamesfoster@example.com', 'Inactive', 3),
     ('7185559876', 'Isabella Green', 'isabellagreen@example.com', 'Active', 3),
     ('8185559876', 'Liam Harris', 'liamharris@example.com', 'Active', 3),
-    ('9255559876', 'Mia Ibarra', 'miab@example.com', 'Inactive', 3),
+    ('9255559876', 'Mia Ibarra', 'miab@example.com', 'Inactive', 3), 
 
     # Students
     ('4085559876', 'William Jackson', 'williamjackson@example.com', 'Active', 4),
