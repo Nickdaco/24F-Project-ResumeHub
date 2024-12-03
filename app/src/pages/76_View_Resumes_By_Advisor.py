@@ -15,7 +15,7 @@ def getId():
     all_users = requests.get(f'http://api:4000/u/users').json()
     advisor_id = "INVALID"
     for user in all_users:
-        if user["Email"] == "isabellagreen@example.com":
+        if user["Name"] == "Sam Miller":
             advisor_id = user["UUID"]
     return advisor_id
 
