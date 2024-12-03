@@ -13,7 +13,7 @@ st.header("Search for Resume by Education:")
 with st.form('search_form'):
     col1, col2 = st.columns([4, 1])
     with col1:
-        prompt = st.text_input("Enter Degree Info ex. Harvard, Computer Science, or Bachelors of Art")
+        prompt = st.text_input("Enter Degree Info ex. Computer Science, or Bachelors of Art")
     with col2:
         search = st.form_submit_button('Search')
 
