@@ -88,6 +88,9 @@ def view_skills_page_nav():
 def update_companies_page_nav():
     st.sidebar.page_link("pages/52_Update_Company_Info.py", label="Update Company Info", icon="🔄")
 
+def delete_resumes_page_nav():
+    st.sidebar.page_link("pages/53_Delete_Resume.py", label="Delete Resume", icon="🗑️")
+
 
 
 # *******
@@ -164,6 +167,7 @@ def SideBarLinks(show_home=False):
             view_companies_page_nav()
             view_skills_page_nav()
             update_companies_page_nav()
+            delete_resumes_page_nav()
 
         if st.session_state["role"] == "student":
             student_home_nav()
