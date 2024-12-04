@@ -173,6 +173,7 @@ def get_student_at_recruiter_company(recruiter_id):
             S.CurrentState as State,
             R.ResumeId as ResumeID,
             U.Name, 
+            BIN_TO_UUID(S.UserId) as StudentID, 
             U.Email,
             R.Country
         FROM Student S
