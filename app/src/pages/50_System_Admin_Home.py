@@ -40,3 +40,8 @@ if st.button('Delete Company',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/54_Delete_Company.py')
+    
+if st.button('Delete User',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/55_Delete_User.py')
