@@ -172,9 +172,31 @@ def student_view_resumes_by_company():
 # Co-op Advisor
 # *************
 def coop_advisor_home_nav():
-    st.sidebar.page_link(
-        "pages/70_Coop_Advisor_Home.py", label="Coop Advisor Home", icon="👤"
-    )
+    st.sidebar.page_link("pages/70_Coop_Advisor_Home.py", label="Coop Advisor Home", icon="👤")
+
+
+def coop_advisor_view_resumes_by_degree():
+    st.sidebar.page_link("pages/71_View_Resumes_By_Degree.py", label="View Resumes By Degree", icon="📜")
+
+
+def coop_advisor_view_resumes_by_interview_at_company():
+    st.sidebar.page_link("pages/73_View_Resumes_By_Interview_At_Company.py",
+                         label="Resumes Landed Interviews", icon="👁️")
+
+
+def coop_advisor_view_resumes_by_experience():
+    st.sidebar.page_link("pages/74_View_Resumes_By_Experience.py",
+                         label="Search by # Experiences", icon="#️⃣️")
+
+
+def coop_advisor_view_interviews_by_student():
+    st.sidebar.page_link("pages/75_View_Interviews_By_Student.py",
+                         label="My Students' Interviews", icon="👀")
+
+
+def coop_advisor_view_resumes_by_advisor():
+    st.sidebar.page_link("pages/76_View_Resumes_By_Advisor.py",
+                         label="My Students' Resumes", icon="📃")
 
 
 # --------------------------------Links Function -----------------------------------------------
@@ -247,7 +269,14 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] == "coop_advisor":
             coop_advisor_home_nav()
+            student_view_resumes_by_company()
+            coop_advisor_view_resumes_by_degree()
+            coop_advisor_view_resumes_by_interview_at_company()
+            coop_advisor_view_resumes_by_experience()
+            coop_advisor_view_interviews_by_student()
+            coop_advisor_view_resumes_by_advisor()
             view_companies_page_nav()
+
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
