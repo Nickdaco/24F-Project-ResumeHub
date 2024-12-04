@@ -100,21 +100,20 @@ def update_company(company_id):
     Name= company_info['Name']
     isActive= company_info['isActive']
 
-    query = '''
+    query = f'''
         UPDATE Company
-        SET AcceptsInternational=%s,
-            City= %s,
-            State= %s,
-            Country= %s,
-            Name= %s
-            isActive=%s
-        WHERE Id= {0}'''.format(company_id)
-    
+        SET
+            City = '{City}',
+            State = '{State}',
+            Country = '{Country}',
+            Name = '{Name}',
+            isActive = {isActive},
+            AcceptsInternational = {AcceptsInternational}
+        WHERE Id = {company_id}
+    '''
 
-    data=(AcceptsInternational,City,State,Country,Name,isActive)
-    
-    cursor=db.get_db().cursor()
-    cursor.execute(query,data)
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
     db.get_db().commit()
 
     response = jsonify("Company Updated")
