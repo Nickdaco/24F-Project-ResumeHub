@@ -8,6 +8,7 @@ def format_date(date_str):
 def render_resume(resume):
     st.write(f"## {resume['Name']}")
     st.write(f"**Resume Id:** {resume['ResumeID']}")
+    st.write(f"**Student Id:** {resume['StudentID']}")
     col1, col2 = st.columns([1, 2])
 
     with col1:

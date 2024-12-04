@@ -1,9 +1,6 @@
 from flask import Flask
 
 from backend.db_connection import db
-# from backend.customers.customer_routes import customers
-# from backend.products.products_routes import products
-from backend.simple.simple_routes import simple_routes
 from backend.resume_hub_blueprints.resumes.resumes_routes import resumes
 from backend.resume_hub_blueprints.companies.companies_routes import companies
 from backend.resume_hub_blueprints.interviews.interviews_routes import interviews
@@ -43,13 +40,7 @@ def create_app():
     # and give a url prefix to each
     app.logger.info(
         'current_app(): registering blueprints with Flask app object.')
-    app.register_blueprint(simple_routes)
 
-    # These are the from the original boilerplate.
-    # app.register_blueprint(customers, url_prefix='/c')
-    # app.register_blueprint(products, url_prefix='/p')
-
-    # These are ours.
     app.register_blueprint(resumes, url_prefix='/r')
     app.register_blueprint(companies, url_prefix='/c')
     app.register_blueprint(users, url_prefix='/u')

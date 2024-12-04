@@ -1,6 +1,7 @@
 import logging
 import requests
 from datetime import datetime
+from pages.resume_view_utils import render_resume
 import streamlit as st
 from modules.nav import SideBarLinks
 from pages.interview_view_utils import render_interview
@@ -16,18 +17,13 @@ st.header("Search for Interviews After a Date")
 with st.form('search_form'):
     col1, col2 = st.columns([4, 1])
     with col1:
-        date = st.date_input("Enter Cutoff Date")
-        date = datetime.strptime(date.ctime(), "%a %b %d %H:%M:%S %Y")
+        prompt = st.text_input(
+            "Student's User Id")
     with col2:
         search = st.form_submit_button('Search')
-
 if search:
-    if date:
-
-        interviews = requests.get(f'http://api:4000/i/interviews').json()
-        for interview in interviews:
-
-            interviewDate = datetime.strptime(
-                interview['InterviewDate'], "%a, %d %b %Y %H:%M:%S %Z")
-            if (date < interviewDate):
-                render_interview(interview)
+    if prompt:
+        resumes = requests.get(
+            f'http://api:4000/r/resumes/exclude_user_ids={prompt}').json()
+        for resume in resumes:
+            render_resume(resume)
