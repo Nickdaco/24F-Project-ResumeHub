@@ -36,10 +36,14 @@ if st.button("Update Company Information"):
     st.json(final_json)
 
     headers = {'Content-Type': 'application/json'}
-    response = requests.put(
-        f"http://api:4000/c/companies/{st.session_state.Id}",
-        headers=headers,
-        data=json.dumps(final_json).encode(),
-    )
-    response.raise_for_status()
+    try:
+        response = requests.put(
+            f"http://api:4000/c/companies/{st.session_state.Id}",
+            headers=headers,
+            data=json.dumps(final_json).encode(),
+        )
+        response.raise_for_status()
+        st.success("Company information updated successfully!")
+    except requests.exceptions.RequestException as e:
+        st.error(f"An error occurred: {e}")
 

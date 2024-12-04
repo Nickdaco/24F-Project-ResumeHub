@@ -30,3 +30,8 @@ if st.button('Update Company Information',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/52_Update_Company_Info.py')
+    
+if st.button('Delete Resume',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/53_Delete_Resume.py')
