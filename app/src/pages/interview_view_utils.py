@@ -18,7 +18,7 @@ def render_interview(interview):
     Company= requests.get(f"http://api:4000/c/companies/{interview['CompanyId']}").json()[0]
     with col2:
         st.subheader("Company")
-        st.write(f"{Company[0]['Name']}")
+        st.write(f"{Company['Name']}")
         st.write(f"{format_date(interview['InterviewDate'])}")
 
     st.markdown("---")
