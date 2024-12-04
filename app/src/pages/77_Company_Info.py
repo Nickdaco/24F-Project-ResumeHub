@@ -24,18 +24,7 @@ def render_company(company):
     st.divider()
 
 
-def getId():
-    all_users = requests.get(f'http://api:4000/u/users').json()
-    recruiter_id = "INVALID"
-    for user in all_users:
-        if user["Name"] == st.session_state['full_name']:
-            recruiter_id = user["UUID"]
-    return recruiter_id
-
-
-recruiter_id = getId()
-
 companies = requests.get(
-    f'http://api:4000/c/companies/recruiter/{recruiter_id}').json()
+    f'http://api:4000/c/companies/recruiter/{st.session_state["recruiter_id"]}').json()
 for company in companies:
     render_company(company)

@@ -15,18 +15,7 @@ st.header("View Students Worked At My Company")
 # (and also break the rules of the project) We elected to search for the UUID instead.
 
 
-def getId():
-    all_users = requests.get(f'http://api:4000/u/users').json()
-    recruiter_id = "INVALID"
-    for user in all_users:
-        if user["Name"] == st.session_state['full_name']:
-            recruiter_id = user["UUID"]
-    return recruiter_id
-
-
-recruiter_id = getId()
-
 students = requests.get(
-    f'http://api:4000/c/companies/student_at_recruiter_company/{recruiter_id}').json()
+    f'http://api:4000/c/companies/student_at_recruiter_company/{st.session_state["recruiter_id"]}').json()
 for student in students:
     render_resume(student)
