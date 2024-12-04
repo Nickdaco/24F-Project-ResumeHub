@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 SideBarLinks()
 st.header(f"Hi, {st.session_state['first_name']}.")
-st.header("Search for Resume by Company:")
+st.header("Search for Resumes From Canidates Who Got Interviews At A Target Company:")
 
 with st.form('search_form'):
     col1, col2 = st.columns([4, 1])
