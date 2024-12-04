@@ -1,4 +1,3 @@
-from backend.ml_models.model01 import predict
 from backend.db_connection import db
 from flask import current_app
 from flask import make_response
