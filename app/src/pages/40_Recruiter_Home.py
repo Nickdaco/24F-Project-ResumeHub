@@ -77,3 +77,6 @@ if st.button('Delete Interview',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/80_Delete_Interview.py')
+
+if st.button('Edit Company', type='primary', use_container_width=True):
+    st.switch_page('pages/43_Recruiter_Company_Edit.py')
