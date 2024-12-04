@@ -60,7 +60,8 @@ def post_interview():
 # GET /interviews/{student_id}
 @interviews.route('/interviews/<student_uuid>', methods=['GET'])
 def get_interviews(student_uuid):
-    query = f'SELECT * FROM Interview WHERE StudentId = UUID_TO_BIN("{student_uuid}")'
+    query = f'''SELECT * \
+    FROM Interview WHERE StudentId = UUID_TO_BIN("{student_uuid}")'''
     cursor = db.get_db().cursor()
     cursor.execute(query)
     theData = cursor.fetchall()
@@ -79,7 +80,8 @@ def get_interviews(student_uuid):
 # Updates Interview's PassedInterview field to true.
 @interviews.route('/interviews/<int:interview_id>', methods=['PUT'])
 def update_interview(interview_id):
-    query = f'UPDATE Interview SET PassedInterview = TRUE WHERE Id = {interview_id}'
+    query = f'''UPDATE Interview SET PassedInterview = TRUE WHERE Id = \
+    {interview_id}'''
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
@@ -145,4 +147,3 @@ def update_skill(skill_id):
     response.status_code = 200
 
     return response
-

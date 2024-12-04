@@ -39,3 +39,13 @@ if st.button('View Students That Worked At Your Company',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/78_Student_At_Same_Company_As_Recruiter.py')
+
+if st.button('Select Students to Interview',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/79_Select_Interview.py')
+
+if st.button('Delete Interview',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/80_Delete_Interview.py')

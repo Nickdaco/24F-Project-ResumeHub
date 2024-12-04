@@ -39,10 +39,6 @@ if len(event.selection['rows']):
     selected_row = event.selection['rows'][0]
     name = df.iloc[selected_row]['Name']
     name_id = [{x["Name"]: x["id"]} for x in data.json() if x["Name"] == name]
-    # TODO: Error Page? Maybe add the uuid at the end of the name as this happens when a student with the same name gets added
-    if len(name_id) > 1:
-        print("Error")
-
     resume_info = requests.get(
         f'http://api:4000/r/resumes/{name_id[0][name]}').json()
 
