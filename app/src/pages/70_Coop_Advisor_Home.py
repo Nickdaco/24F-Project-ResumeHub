@@ -26,6 +26,11 @@ if st.button('View Resumes By Degree',
              use_container_width=True):
     st.switch_page('pages/71_View_Resumes_By_Degree.py')
 
+if st.button('View Resumes That Got Interviews',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/73_View_Resumes_By_Interview_At_Company.py')
+
 # As a co-op advisor, I need to be able to compare resumes from students with varying levels 
 # of experience so that I can recommend different resume strategies based on each student's 
 # background and skill set.
