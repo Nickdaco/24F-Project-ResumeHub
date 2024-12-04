@@ -23,3 +23,9 @@ if st.button('View All Resumes',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/63_View_Resumes.py')
+
+
+if st.button('View All Companies',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/66_View_Companies.py')
