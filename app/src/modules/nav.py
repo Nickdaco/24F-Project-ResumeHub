@@ -84,12 +84,27 @@ def view_specific_resumes_page_nav():
 
 def view_my_companies_page_nav():
     st.sidebar.page_link("pages/77_Company_Info.py",
-                         label="View My Companies", icon="💼")
+                         label="View My Companies Profile", icon="💼")
 
 
 def view_students_at_company_nav():
     st.sidebar.page_link("pages/78_Student_At_Same_Company_As_Recruiter.py",
-                         label="View My Companies", icon="📝")
+                         label="View Previous/Current Co-ops", icon="📝")
+
+
+def view_selecting_interviewees_nav():
+    st.sidebar.page_link("pages/79_Select_Interview.py",
+                         label="Select Interviewees", icon="👨‍💻")
+
+
+def view_delete_interviews_nav():
+    st.sidebar.page_link("pages/80_Delete_Interview.py",
+                         label="Delete Interviews", icon="🗑️")
+
+
+def view_future_interviews_nav():
+    st.sidebar.page_link("pages/81_Future_Interviews.py",
+                         label="Future Interviews", icon="🗓️")
 
 
 # ************
@@ -172,11 +187,13 @@ def student_view_resumes_by_company():
 # Co-op Advisor
 # *************
 def coop_advisor_home_nav():
-    st.sidebar.page_link("pages/70_Coop_Advisor_Home.py", label="Coop Advisor Home", icon="👤")
+    st.sidebar.page_link("pages/70_Coop_Advisor_Home.py",
+                         label="Coop Advisor Home", icon="👤")
 
 
 def coop_advisor_view_resumes_by_degree():
-    st.sidebar.page_link("pages/71_View_Resumes_By_Degree.py", label="View Resumes By Degree", icon="📜")
+    st.sidebar.page_link("pages/71_View_Resumes_By_Degree.py",
+                         label="View Resumes By Degree", icon="📜")
 
 
 def coop_advisor_view_resumes_by_interview_at_company():
@@ -245,6 +262,10 @@ def SideBarLinks(show_home=False):
             view_resumes_page_nav()
             view_companies_page_nav()
             view_my_companies_page_nav()
+            view_students_at_company_nav()
+            view_selecting_interviewees_nav()
+            view_future_interviews_nav()
+            view_delete_interviews_nav()
 
         if st.session_state["role"] == "system_admin":
             system_admin_home_nav()
@@ -276,7 +297,6 @@ def SideBarLinks(show_home=False):
             coop_advisor_view_interviews_by_student()
             coop_advisor_view_resumes_by_advisor()
             view_companies_page_nav()
-
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
