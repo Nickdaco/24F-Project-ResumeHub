@@ -26,6 +26,14 @@ if st.button('View Resumes By Degree',
              use_container_width=True):
     st.switch_page('pages/71_View_Resumes_By_Degree.py')
 
+# As a co-op advisor, I need to be able to compare resumes from students with varying levels 
+# of experience so that I can recommend different resume strategies based on each student's 
+# background and skill set.
+if st.button('Search Resumes by Number of Experiences',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/74_View_Resumes_By_Experience.py')
+
 #As a co-op advisor, I need a way to view only my students interviews, without seeing other students, after a certain date. 
 if st.button('View My Student\'s Interviews',
              type='primary',
