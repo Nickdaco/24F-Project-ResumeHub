@@ -4,18 +4,19 @@
 ##################################################
 
 # Set up basic logging infrastructure
+from modules.nav import SideBarLinks
+import streamlit as st
 import logging
-logging.basicConfig(format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)
+logging.basicConfig(
+    format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # import the main streamlit library as well
 # as SideBarLinks function from src/modules folder
-import streamlit as st
-from modules.nav import SideBarLinks
 
 # streamlit supports reguarl and wide layout (how the controls
 # are organized/displayed on the screen).
-st.set_page_config(layout = 'wide')
+st.set_page_config(layout='wide')
 
 # If a user is at this page, we assume they are not
 # authenticated.  So we change the 'authenticated' value
@@ -45,10 +46,10 @@ st.write('### Hi! As which user would you like to log in?')
 # **********************
 # These are our personas
 # **********************
-if st.button('Act as James, a tech recruiter', type='primary', use_container_width=True):
+if st.button('Act as Bob, a tech recruiter', type='primary', use_container_width=True):
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'recruiter'
-    st.session_state['first_name'] = 'James'
+    st.session_state['first_name'] = 'Bob'
     st.switch_page('pages/40_Recruiter_Home.py')
 
 if st.button('Act as Leviticus, a system administrator', type='primary', use_container_width=True):

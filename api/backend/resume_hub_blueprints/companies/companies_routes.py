@@ -1,15 +1,17 @@
+from backend.ml_models.model01 import predict
+from backend.db_connection import db
+from flask import current_app
+from flask import make_response
+from flask import jsonify
+from flask import request
 from flask import Blueprint
 
 companies = Blueprint('companies', __name__)
-from flask import request
-from flask import jsonify
-from flask import make_response
-from flask import current_app
-from backend.db_connection import db
-from backend.ml_models.model01 import predict
 
 # GET /companies
-#Return the list of all countries with all attributes
+# Return the list of all countries with all attributes
+
+
 @companies.route('/companies', methods=['GET'])
 def get_companies():
     query = '''
@@ -17,12 +19,12 @@ def get_companies():
     FROM Company
     '''
 
-    cursor=db.get_db().cursor()
+    cursor = db.get_db().cursor()
     cursor.execute(query)
-    theData=cursor.fetchall()
+    theData = cursor.fetchall()
 
     response = make_response(jsonify(theData))
-    response.status_case=200
+    response.status_case = 200
     return response
 
 
@@ -30,15 +32,15 @@ def get_companies():
 # Update the companies table with a new entity
 @companies.route('/companies', methods=['POST'])
 def post_company():
-    company_info= request.json
+    company_info = request.json
     current_app.logger.info(company_info)
 
     AcceptsInternational = company_info['AcceptsInternational']
     City = company_info['City']
     State = company_info['State']
-    Country= company_info['Country']
-    Name= company_info['Name']
-    isActive=company_info['isActive']
+    Country = company_info['Country']
+    Name = company_info['Name']
+    isActive = company_info['isActive']
 
     query = f'''
         INSERT INTO Company( AcceptsInternational,
@@ -57,12 +59,12 @@ def post_company():
 
     current_app.logger.info(query)
 
-    cursor= db.get_db().cursor()
+    cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
-    
-    response=make_response("Successfully added company")
-    response.status_code=200
+
+    response = make_response("Successfully added company")
+    response.status_code = 200
 
     return response
 
@@ -85,20 +87,19 @@ def get_company(company_id):
     return response
 
 
-
 # PUT /companies/{company_id}
 # Update the attributes of en entity at the supplied id
 @companies.route('/companies/<int:company_id>', methods=['PUT'])
 def update_company(company_id):
-    company_info= request.json
+    company_info = request.json
     current_app.logger.info(company_info)
 
     AcceptsInternational = company_info['AcceptsInternational']
     City = company_info['City']
     State = company_info['State']
-    Country= company_info['Country']
-    Name= company_info['Name']
-    isActive= company_info['isActive']
+    Country = company_info['Country']
+    Name = company_info['Name']
+    isActive = company_info['isActive']
 
     query = f'''
         UPDATE Company
@@ -117,7 +118,7 @@ def update_company(company_id):
     db.get_db().commit()
 
     response = jsonify("Company Updated")
-    response.status_case=200
+    response.status_case = 200
     return response
 
 
@@ -132,11 +133,27 @@ def delete_company(company_id):
         UPDATE Company
         SET IsActive= 0
         WHERE Id= {0}'''.format(company_id)
-    
-    cursor=db.get_db().cursor()
+
+    cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
 
     response = jsonify("Company inactive")
-    response.status_case=200
+    response.status_case = 200
+    return response
+
+
+@companies.route('/companies/recruiter/<recruiter_id>', methods=['GET'])
+def get_company_by_recruiter_id(recruiter_id):
+    query = '''
+        SELECT Company.* from Company
+        JOIN ResumeDB.Recruiter R on '{0}' = BIN_TO_UUID(R.UserId);'''.format(recruiter_id)
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    theData = cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_case = 200
     return response

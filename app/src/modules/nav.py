@@ -28,12 +28,14 @@ def WorldBankVizNav():
 
 
 def MapDemoNav():
-    st.sidebar.page_link("pages/02_Map_Demo.py", label="Map Demonstration", icon="🗺️")
+    st.sidebar.page_link("pages/02_Map_Demo.py",
+                         label="Map Demonstration", icon="🗺️")
 
 
-## ------------------------ Examples for Role of usaid_worker ------------------------
+# ------------------------ Examples for Role of usaid_worker ------------------------
 def ApiTestNav():
-    st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon="🛜")
+    st.sidebar.page_link("pages/12_API_Test.py",
+                         label="Test the API", icon="🛜")
 
 
 def PredictionNav():
@@ -48,9 +50,10 @@ def ClassificationNav():
     )
 
 
-#### ------------------------ System Admin Role ------------------------
+# ------------------------ System Admin Role ------------------------
 def AdminPageNav():
-    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="🖥️")
+    st.sidebar.page_link("pages/20_Admin_Home.py",
+                         label="System Admin", icon="🖥️")
     st.sidebar.page_link(
         "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
     )
@@ -58,9 +61,16 @@ def AdminPageNav():
 # ************
 # All Personas
 # ************
+
+
 def view_companies_page_nav():
-    st.sidebar.page_link("pages/66_View_Companies.py", label="View Companies", icon="🏢")
-    
+    st.sidebar.page_link("pages/66_View_Companies.py",
+                         label="View Companies", icon="🏢")
+
+
+def view_my_companies_page_nav():
+    st.sidebar.page_link("pages/77_Company_Info.py",
+                         label="View My Companies", icon="💼")
 
 
 # *********
@@ -78,41 +88,65 @@ def recruiter_home_nav():
 def system_admin_home_nav():
     st.sidebar.page_link(
         "pages/50_System_Admin_Home.py", label="System Admin Home", icon="👤")
-    
+
+
 def view_users_page_nav():
-    st.sidebar.page_link("pages/56_View_Users.py", label="View Users", icon="👀")
-    
+    st.sidebar.page_link("pages/56_View_Users.py",
+                         label="View Users", icon="👀")
+
+
 def view_resumes_page_nav():
-    st.sidebar.page_link("pages/63_View_Resumes.py", label="View Resumes", icon="📄")
-    
+    st.sidebar.page_link("pages/63_View_Resumes.py",
+                         label="View Resumes", icon="📄")
+
+
 def view_skills_page_nav():
-    st.sidebar.page_link("pages/51_View_Skills.py", label="View Skills", icon="🛠️")
-    
+    st.sidebar.page_link("pages/51_View_Skills.py",
+                         label="View Skills", icon="🛠️")
+
+
 def update_companies_page_nav():
-    st.sidebar.page_link("pages/52_Update_Company_Info.py", label="Update Company Info", icon="🔄")
+    st.sidebar.page_link("pages/52_Update_Company_Info.py",
+                         label="Update Company Info", icon="🔄")
+
 
 def delete_resumes_page_nav():
-    st.sidebar.page_link("pages/53_Delete_Resume.py", label="Delete Resume", icon="🗑️")
+    st.sidebar.page_link("pages/53_Delete_Resume.py",
+                         label="Delete Resume", icon="🗑️")
+
 
 def delete_company_page_nav():
-    st.sidebar.page_link("pages/54_Delete_Company.py", label="Delete Company", icon="❌")
+    st.sidebar.page_link("pages/54_Delete_Company.py",
+                         label="Delete Company", icon="❌")
+
 
 def delete_user_page_nav():
-    st.sidebar.page_link("pages/55_Delete_User.py", label="Delete User", icon="🔥")
+    st.sidebar.page_link("pages/55_Delete_User.py",
+                         label="Delete User", icon="🔥")
 
 # *******
 # Student
 # *******
+
+
 def student_home_nav():
-    st.sidebar.page_link("pages/60_Student_Home.py", label="Student Home", icon="👤")
+    st.sidebar.page_link("pages/60_Student_Home.py",
+                         label="Student Home", icon="👤")
 
 
 def student_add_resume():
-    st.sidebar.page_link("pages/61_Add_Resume.py", label="Add Resume", icon="🧾")
+    st.sidebar.page_link("pages/61_Add_Resume.py",
+                         label="Add Resume", icon="🧾")
+
+
+def view_specific_resumes_page_nav():
+    st.sidebar.page_link("pages/41_Resume_List.py",
+                         label="Specific Resumes", icon="📚")
 
 
 def student_update_resume():
-    st.sidebar.page_link('pages/62_Update_Resume.py', label="Update Resume", icon="✏️")
+    st.sidebar.page_link('pages/62_Update_Resume.py',
+                         label="Update Resume", icon="✏️")
 
 
 # *************
@@ -166,7 +200,10 @@ def SideBarLinks(show_home=False):
         # ********************
         if st.session_state["role"] == "recruiter":
             recruiter_home_nav()
+            view_specific_resumes_page_nav()
+            view_resumes_page_nav()
             view_companies_page_nav()
+            view_my_companies_page_nav()
 
         if st.session_state["role"] == "system_admin":
             system_admin_home_nav()
@@ -191,7 +228,6 @@ def SideBarLinks(show_home=False):
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
-
 
     if st.session_state["authenticated"]:
         # Always show a logout button if there is a logged in user
