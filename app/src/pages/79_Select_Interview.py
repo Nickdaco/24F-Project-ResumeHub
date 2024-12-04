@@ -25,18 +25,6 @@ st.header('Student Resumes')
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 
-def getId():
-    all_users = requests.get(f'http://api:4000/u/users').json()
-    recruiter_id = "INVALID"
-    for user in all_users:
-        if user["Name"] == st.session_state['full_name']:
-            recruiter_id = user["UUID"]
-    return recruiter_id
-
-
-recruiter_id = getId()
-
-
 col1, col2 = st.columns(2)
 with col1:
     st.write("Students Looking for a Co-op/Internship")
@@ -54,7 +42,7 @@ with col1:
 with col2:
     st.write("Companies You Work For")
     companies_json = requests.get(
-        f'http://api:4000/c/companies/recruiter/{recruiter_id}')
+        f'http://api:4000/c/companies/recruiter/{st.session_state["recruiter_id"]}')
     company_df = pd.DataFrame(
         [{"Name": d["Name"]}
          for d in companies_json.json()]

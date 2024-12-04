@@ -1,5 +1,6 @@
 import logging
 import streamlit as st
+import requests
 from modules.nav import SideBarLinks
 
 logger = logging.getLogger(__name__)
@@ -13,6 +14,18 @@ st.title(f"Welcome technical recruiter, {st.session_state['first_name']}.")
 st.write('')
 st.write('')
 st.write('### What would you like to do today?')
+
+
+def getId():
+    all_users = requests.get(f'http://api:4000/u/users').json()
+    recruiter_id = "INVALID"
+    for user in all_users:
+        if user["Name"] == st.session_state['full_name']:
+            recruiter_id = user["UUID"]
+    return recruiter_id
+
+
+st.session_state['recruiter_id'] = getId()
 
 if st.button('View Specific Resumes',
              type='primary',
