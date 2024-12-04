@@ -11,6 +11,8 @@ SideBarLinks()
 st.header(f"Hi, {st.session_state['first_name']}.")
 st.header("View your students resumes")
 
+##The UUID changes each time the docker container starts, rather than implement a log in system to mitigate this
+# (and also break the rules of the project) We elected to search for the UUID instead.
 def getId():
     all_users = requests.get(f'http://api:4000/u/users').json()
     advisor_id = "INVALID"
