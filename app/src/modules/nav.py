@@ -77,11 +77,6 @@ def recruiter_home_nav():
     )
 
 
-def view_specific_resumes_page_nav():
-    st.sidebar.page_link("pages/41_Resume_List.py",
-                         label="Specific Resumes", icon="📚")
-
-
 def view_my_companies_page_nav():
     st.sidebar.page_link("pages/77_Company_Info.py",
                          label="View My Companies Profile", icon="💼")
@@ -258,7 +253,6 @@ def SideBarLinks(show_home=False):
         # ********************
         if st.session_state["role"] == "recruiter":
             recruiter_home_nav()
-            view_specific_resumes_page_nav()
             view_resumes_page_nav()
             view_companies_page_nav()
             view_my_companies_page_nav()
