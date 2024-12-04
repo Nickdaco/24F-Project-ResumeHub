@@ -15,7 +15,7 @@ st.header('Current Interview Page')
 
 st.write("Interviews")
 interview_data = requests.get("http://api:4000/i/interviews")
-student_data = requests.get("http://api:4000/r/all_students")
+student_data = requests.get("http://api:4000/r/resumes/all_students")
 student_name_id = {student["id"]: student["Name"]
                    for student in student_data.json()}
 interview_df = pd.DataFrame([{"Student Name": student_name_id[y["StudentId"].replace("-", "")],

@@ -588,7 +588,7 @@ def get_by_user_id(user_id: str):
 # Extra endpoint left over
 
 
-@resumes.route('/all_students', methods=['GET'])
+@resumes.route('/resumes/all_students', methods=['GET'])
 def get_all_students():
     query = '''
         select LOWER(HEX(s.UserId)) as id, R.Name 

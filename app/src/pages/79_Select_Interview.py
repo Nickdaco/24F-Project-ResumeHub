@@ -28,7 +28,7 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 col1, col2 = st.columns(2)
 with col1:
     st.write("Students Looking for a Co-op/Internship")
-    student_data = requests.get("http://api:4000/r/all_students")
+    student_data = requests.get("http://api:4000/r/resumes/all_students")
     student_df = pd.DataFrame(
         [{"Name": d["Name"]}
          for d in student_data.json()]
