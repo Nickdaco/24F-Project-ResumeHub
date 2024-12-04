@@ -49,8 +49,8 @@ st.write('### Hi! As which user would you like to log in?')
 if st.button('Act as Bob, a tech recruiter', type='primary', use_container_width=True):
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'recruiter'
-    st.session_state['first_name'] = 'Bob'
-    st.session_state['full_name'] = "Bob Brown"
+    st.session_state['first_name'] = 'Sophia'
+    st.session_state['full_name'] = "Sophia Evans"
     st.switch_page('pages/40_Recruiter_Home.py')
 
 if st.button('Act as Leviticus, a system administrator', type='primary', use_container_width=True):

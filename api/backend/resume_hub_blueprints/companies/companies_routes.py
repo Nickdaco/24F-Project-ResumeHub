@@ -146,8 +146,10 @@ def delete_company(company_id):
 @companies.route('/companies/recruiter/<recruiter_id>', methods=['GET'])
 def get_company_by_recruiter_id(recruiter_id):
     query = '''
-        SELECT Company.* from Company
-        JOIN Recruiter R on '{0}' = BIN_TO_UUID(R.UserId);'''.format(recruiter_id)
+        SELECT C.* from Company C
+        JOIN Recruiter R on '{0}' = BIN_TO_UUID(R.UserId)
+        AND  R.CompanyId = C.Id;'''.format(recruiter_id)
+
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
