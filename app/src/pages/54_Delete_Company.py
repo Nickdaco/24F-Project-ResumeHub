@@ -10,20 +10,20 @@ logger = logging.getLogger(__name__)
 SideBarLinks()
 
 st.header(f"Hi, {st.session_state['first_name']}.")
-st.header('Delete Resume:')
+st.header('Delete Company:')
 
+st.text_input("Id", key="Id")
 
-st.text_input("Resume ID", key="ResumeID")
-
-if st.button("Delete Resume"):
+if st.button("Delete Company"):
     headers = {'Content-Type': 'application/json'}
     try:
         response = requests.delete(
-            f"http://api:4000/r/resumes/{st.session_state.ResumeID}",
-            headers=headers
+            f"http://api:4000/c/companies/{st.session_state.Id}",
+            headers=headers,
+            data=json.dumps({}).encode()
         )
         response.raise_for_status()
-        st.success("Resume deleted successfully.")
+        st.success("Company deleted successfully.")
     except requests.exceptions.HTTPError as err:
         st.error(f"Error: {err}")
     

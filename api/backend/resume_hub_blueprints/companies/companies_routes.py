@@ -107,8 +107,6 @@ def update_company(company_id):
             AcceptsInternational = {AcceptsInternational}
         WHERE Id = {company_id}
     '''
-    
-    print(query)
 
     cursor = db.get_db().cursor()
     cursor.execute(query)
