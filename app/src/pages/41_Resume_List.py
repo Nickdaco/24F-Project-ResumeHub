@@ -22,7 +22,7 @@ st.header('Student Resumes')
 st.write(f"### Hi, {st.session_state['first_name']}.")
 
 
-data = requests.get("http://api:4000/r/all_students")
+data = requests.get("http://api:4000/r/resumes/all_students")
 df = pd.DataFrame(
     [{"Name": d["Name"]}
      for d in data.json()]

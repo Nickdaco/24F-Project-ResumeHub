@@ -172,7 +172,7 @@ def get_student_at_recruiter_company(recruiter_id):
             S.GraduationYear,
             S.CurrentCity as City,
             S.CurrentState as State,
-            S.AdvisorID,
+            R.ResumeId as ResumeID,
             U.Name, 
             U.Email,
             R.Country
