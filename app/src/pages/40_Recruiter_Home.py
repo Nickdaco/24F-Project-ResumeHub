@@ -32,6 +32,16 @@ if st.button('View Specific Resumes',
              use_container_width=True):
     st.switch_page('pages/41_Resume_List.py')
 
+if st.button('View Resumes by Skills',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/82_Resume_By_Skills.py')
+
+if st.button('Ignore Candidates',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/83_Ignore_Candidates.py')
+
 if st.button('View All Resumes',
              type='primary',
              use_container_width=True):
