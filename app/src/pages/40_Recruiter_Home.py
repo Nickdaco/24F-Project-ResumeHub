@@ -34,3 +34,8 @@ if st.button('View My Company Info',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/77_Company_Info.py')
+
+if st.button('View Students That Worked At Your Company',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/78_Student_At_Same_Company_As_Recruiter.py')

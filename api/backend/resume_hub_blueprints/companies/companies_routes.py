@@ -161,19 +161,32 @@ def get_company_by_recruiter_id(recruiter_id):
 
 @companies.route('/companies/student_at_recruiter_company/<recruiter_id>', methods=['GET'])
 def get_student_at_recruiter_company(recruiter_id):
+    print(recruiter_id)
     query = '''
-        SELECT S.* FROM Student S
+        SELECT 
+            S.GithubLink as GithubLink,
+            S.LinkedInLink as LinkedInLink,
+            S.University,
+            S.GraduationYear,
+            S.CurrentCity as City,
+            S.CurrentState as State,
+            S.AdvisorID,
+            U.Name, 
+            U.Email,
+            R.Country
+        FROM Student S
         JOIN Resumes R on S.UserId = R.StudentId
         JOIN ResumeCompany RC on R.ResumeId = RC.ResumeId
         JOIN Company C on C.Id = RC.CompanyId
         JOIN Recruiter R2 on C.Id = R2.CompanyId and
-        BIN_TO_UUID(R2.UserId)='{0}';
+        BIN_TO_UUID(R2.UserId)='{0}'
+        JOIN User U on S.UserId = UUID;
     '''.format(recruiter_id)
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
-
     theData = cursor.fetchall()
+    print(theData)
 
     response = make_response(jsonify(theData))
     response.status_case = 200

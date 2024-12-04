@@ -68,11 +68,6 @@ def view_companies_page_nav():
                          label="View Companies", icon="🏢")
 
 
-def view_my_companies_page_nav():
-    st.sidebar.page_link("pages/77_Company_Info.py",
-                         label="View My Companies", icon="💼")
-
-
 # *********
 # Recruiter
 # *********
@@ -80,6 +75,16 @@ def recruiter_home_nav():
     st.sidebar.page_link(
         "pages/40_Recruiter_Home.py", label="Recruiter Home", icon="👤"
     )
+
+
+def view_my_companies_page_nav():
+    st.sidebar.page_link("pages/77_Company_Info.py",
+                         label="View My Companies", icon="💼")
+
+
+def view_students_at_company_nav():
+    st.sidebar.page_link("pages/78_Student_At_Same_Company_As_Recruiter.py",
+                         label="View My Companies", icon="📝")
 
 
 # ************
