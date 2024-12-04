@@ -14,8 +14,12 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('View Resumes',
+if st.button('View Specific Resumes',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/41_Resume_List.py')
 
+if st.button('View All Resumes',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/63_View_Resumes.py')
