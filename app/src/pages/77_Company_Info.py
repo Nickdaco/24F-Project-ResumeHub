@@ -28,7 +28,7 @@ def getId():
     all_users = requests.get(f'http://api:4000/u/users').json()
     recruiter_id = "INVALID"
     for user in all_users:
-        if user["Name"] == "Bob Brown":
+        if user["Name"] == st.session_state['full_name']:
             recruiter_id = user["UUID"]
     return recruiter_id
 

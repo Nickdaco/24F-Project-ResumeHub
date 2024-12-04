@@ -50,6 +50,7 @@ if st.button('Act as Bob, a tech recruiter', type='primary', use_container_width
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'recruiter'
     st.session_state['first_name'] = 'Bob'
+    st.session_state['full_name'] = "Bob Brown"
     st.switch_page('pages/40_Recruiter_Home.py')
 
 if st.button('Act as Leviticus, a system administrator', type='primary', use_container_width=True):
