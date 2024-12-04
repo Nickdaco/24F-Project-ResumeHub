@@ -45,6 +45,11 @@ if st.button('Select Students to Interview',
              use_container_width=True):
     st.switch_page('pages/79_Select_Interview.py')
 
+if st.button('Future Interviews',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/81_Future_Interviews.py')
+
 if st.button('Delete Interview',
              type='primary',
              use_container_width=True):
