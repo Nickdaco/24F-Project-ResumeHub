@@ -79,6 +79,9 @@ def system_admin_home_nav():
     st.sidebar.page_link(
         "pages/50_System_Admin_Home.py", label="System Admin Home", icon="👤")
     
+def view_users_page_nav():
+    st.sidebar.page_link("pages/56_View_Users.py", label="View Users", icon="👀")
+    
 def view_resumes_page_nav():
     st.sidebar.page_link("pages/63_View_Resumes.py", label="View Resumes", icon="📄")
     
@@ -95,7 +98,7 @@ def delete_company_page_nav():
     st.sidebar.page_link("pages/54_Delete_Company.py", label="Delete Company", icon="❌")
 
 def delete_user_page_nav():
-    st.sidebar.page_link("pages/54_Delete_Company.py", label="Delete User", icon="🔥")
+    st.sidebar.page_link("pages/55_Delete_User.py", label="Delete User", icon="🔥")
 
 # *******
 # Student
@@ -167,6 +170,7 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] == "system_admin":
             system_admin_home_nav()
+            view_users_page_nav()
             view_resumes_page_nav()
             view_companies_page_nav()
             view_skills_page_nav()

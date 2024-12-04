@@ -11,6 +11,11 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
+if st.button('View All Users',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/56_View_Users.py')
+
 if st.button('View All Resumes',
              type='primary',
              use_container_width=True):
