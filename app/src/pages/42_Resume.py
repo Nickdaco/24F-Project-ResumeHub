@@ -16,7 +16,7 @@ st.divider()
 for experience in st.session_state['resume_info']['Experience']:
     st.write(f"### Company Name: {experience['CompanyName']}")
     st.write(f"Title: {experience['Title']}")
-    st.write(f"From: {experience['StartDate']} - To: {education['EndDate']}")
+    st.write(f"From: {experience['StartDate']} - To: {experience['EndDate']}")
     st.write(f"Description: {experience['Description']}")
     st.write("")
 
