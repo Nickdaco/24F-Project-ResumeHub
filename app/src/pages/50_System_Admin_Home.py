@@ -25,3 +25,8 @@ if st.button('View All Skills',
              type='primary',
              use_container_width=True):
     st.switch_page('pages/51_View_Skills.py')
+
+if st.button('Update Company Information',
+             type='primary',
+             use_container_width=True):
+    st.switch_page('pages/52_Update_Company_Info.py')

@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 SideBarLinks()
 st.header(f"Hi, {st.session_state['first_name']}.")
-st.header("Skills that students have on their resumes:")
+st.header("All Skills:")
 st.markdown("---")
 
 resumes = requests.get('http://api:4000/r/resumes').json()
