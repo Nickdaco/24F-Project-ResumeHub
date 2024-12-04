@@ -77,6 +77,11 @@ def recruiter_home_nav():
     )
 
 
+def view_specific_resumes_page_nav():
+    st.sidebar.page_link("pages/41_Resume_List.py",
+                         label="Specific Resumes", icon="📚")
+
+
 def view_my_companies_page_nav():
     st.sidebar.page_link("pages/77_Company_Info.py",
                          label="View My Companies", icon="💼")
@@ -129,11 +134,10 @@ def delete_user_page_nav():
     st.sidebar.page_link("pages/55_Delete_User.py",
                          label="Delete User", icon="🔥")
 
+
 # *******
 # Student
 # *******
-
-
 def student_home_nav():
     st.sidebar.page_link("pages/60_Student_Home.py",
                          label="Student Home", icon="👤")
@@ -144,23 +148,55 @@ def student_add_resume():
                          label="Add Resume", icon="🧾")
 
 
-def view_specific_resumes_page_nav():
-    st.sidebar.page_link("pages/41_Resume_List.py",
-                         label="Specific Resumes", icon="📚")
-
-
 def student_update_resume():
     st.sidebar.page_link('pages/62_Update_Resume.py',
                          label="Update Resume", icon="✏️")
+
+
+def student_view_resumes():
+    st.sidebar.page_link('pages/63_View_Resumes.py',
+                         label="View All Resumes", icon="📑")
+
+
+def student_add_interview():
+    st.sidebar.page_link('pages/64_Add_Interview.py',
+                         label="Add Interview", icon="🥊")
+
+
+def student_view_resumes_by_company():
+    st.sidebar.page_link('pages/65_View_Resumes_By_Company.py',
+                         label="View Resumes by Company", icon="👨‍🏫")
 
 
 # *************
 # Co-op Advisor
 # *************
 def coop_advisor_home_nav():
-    st.sidebar.page_link(
-        "pages/70_Coop_Advisor_Home.py", label="Coop Advisor Home", icon="👤"
-    )
+    st.sidebar.page_link("pages/70_Coop_Advisor_Home.py", label="Coop Advisor Home", icon="👤")
+
+
+def coop_advisor_view_resumes_by_degree():
+    st.sidebar.page_link("pages/71_View_Resumes_By_Degree.py", label="View Resumes By Degree", icon="📜")
+
+
+def coop_advisor_view_resumes_by_interview_at_company():
+    st.sidebar.page_link("pages/73_View_Resumes_By_Interview_At_Company.py",
+                         label="Resumes Landed Interviews", icon="👁️")
+
+
+def coop_advisor_view_resumes_by_experience():
+    st.sidebar.page_link("pages/74_View_Resumes_By_Experience.py",
+                         label="Search by # Experiences", icon="#️⃣️")
+
+
+def coop_advisor_view_interviews_by_student():
+    st.sidebar.page_link("pages/75_View_Interviews_By_Student.py",
+                         label="My Students' Interviews", icon="👀")
+
+
+def coop_advisor_view_resumes_by_advisor():
+    st.sidebar.page_link("pages/76_View_Resumes_By_Advisor.py",
+                         label="My Students' Resumes", icon="📃")
 
 
 # --------------------------------Links Function -----------------------------------------------
@@ -225,11 +261,22 @@ def SideBarLinks(show_home=False):
             student_home_nav()
             student_add_resume()
             student_update_resume()
+            delete_resumes_page_nav()
+            student_view_resumes()
+            student_add_interview()
+            student_view_resumes_by_company()
             view_companies_page_nav()
 
         if st.session_state["role"] == "coop_advisor":
             coop_advisor_home_nav()
+            student_view_resumes_by_company()
+            coop_advisor_view_resumes_by_degree()
+            coop_advisor_view_resumes_by_interview_at_company()
+            coop_advisor_view_resumes_by_experience()
+            coop_advisor_view_interviews_by_student()
+            coop_advisor_view_resumes_by_advisor()
             view_companies_page_nav()
+
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
