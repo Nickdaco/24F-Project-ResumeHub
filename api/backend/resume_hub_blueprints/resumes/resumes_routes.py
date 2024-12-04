@@ -15,10 +15,12 @@ def combine_multiple_rows_into_json_object(the_data):
     # Deserialize the data into this dict.
     for row in the_data:
         resume_id = row['ResumeID']
+        student_id = row['StudentID']
 
         if resume_id not in resumes_dict:
             resumes_dict[resume_id] = {
                 "ResumeID": resume_id,
+                "StudentID": student_id,
                 "Name": row['ResumeName'],
                 "Email": row['ResumeEmail'],
                 "City": row['ResumeCity'],
@@ -99,6 +101,7 @@ def get_base_query():
             r.Country AS ResumeCountry,
             r.DateCreated AS ResumeDateCreated,
             r.LastUpdated AS ResumeLastUpdated,
+            BIN_TO_UUID(r.StudentId) AS StudentID,
             s.GithubLink AS StudentGithubLink,
             s.LinkedInLink AS StudentLinkedInLink,
             s.University AS StudentUniversity,
