@@ -359,36 +359,41 @@ def get_resumes_by_interview_company_route(company_id):
         student_id = row["StudentId"]
         students_who_got_interviews.append(student_id)
 
-    student_resumes_query = f'''SELECT ResumeId FROM StudentResumes WHERE StudentId IN ('''
-    for x in range(len(students_who_got_interviews)):
-        student_uuid = students_who_got_interviews[x]
+    if(len(students_who_got_interviews)!=0):
+        student_resumes_query = f'''SELECT ResumeId FROM StudentResumes WHERE StudentId IN ('''
+        for x in range(len(students_who_got_interviews)):
+            student_uuid = students_who_got_interviews[x]
 
-        if x == len(students_who_got_interviews) - 1:
-            student_resumes_query += f"UUID_TO_BIN('{student_uuid}'))"
-        else:
-            student_resumes_query += f"UUID_TO_BIN('{student_uuid}'), "
+            if x == len(students_who_got_interviews) - 1:
+                student_resumes_query += f"UUID_TO_BIN('{student_uuid}'))"
+            else:
+                student_resumes_query += f"UUID_TO_BIN('{student_uuid}'), "
 
-    cursor.execute(student_resumes_query)
-    student_resumes_response = cursor.fetchall()
+        cursor.execute(student_resumes_query)
+        student_resumes_response = cursor.fetchall()
 
-    resume_id_list = []
-    for row in student_resumes_response:
-        resume_id = row["ResumeId"]
-        resume_id_list.append(resume_id)
+        resume_id_list = []
+        for row in student_resumes_response:
+            resume_id = row["ResumeId"]
+            resume_id_list.append(resume_id)
 
-    cursor.execute(get_base_query())  # Get all resumes
-    the_data = cursor.fetchall()
-    list_of_resumes = combine_multiple_rows_into_json_object(the_data)
+        cursor.execute(get_base_query())  # Get all resumes
+        the_data = cursor.fetchall()
+        list_of_resumes = combine_multiple_rows_into_json_object(the_data)
 
-    return_value = []
-    for resume in list_of_resumes:
-        resume_id = resume["ResumeID"]
-        if resume_id in resume_id_list:
-            return_value.append(resume)
+        return_value = []
+        for resume in list_of_resumes:
+            resume_id = resume["ResumeID"]
+            if resume_id in resume_id_list:
+                return_value.append(resume)
 
-    the_response = make_response(jsonify(return_value))
-    the_response.status_code = 200
-    return the_response
+        the_response = make_response(jsonify(return_value))
+        the_response.status_code = 200
+        return the_response
+    else:
+        the_response = make_response(jsonify([]))
+        the_response.status_code = 200
+        return the_response
 
 
 # GET /resumes/degree_major={x}
