@@ -8,7 +8,20 @@ The platform supports four primary user types—students, co-op advisors, recrui
 Currently, there are three major components which will each run in their own Docker Containers:
 
 - Streamlit App in the `./app` directory
+    - all pages can be found in `./app/src/pages each page has a prefix as a number for file management
+        - 30 an about page for the app
+        - 40-49 Recruiter Pages
+        - 50-59 System Admin pages
+        - 60-69 Student pages
+        - 70-79 Coop Advisor
+        - 80-89 Interview pages
+    # Note: Some pages such as 65_View_Resumes_By_Company are shared between users, in this case Advisor and Student.  
 - Flask REST api in the `./api` directory
+    - all blueprints can be found under `/api/backend/resume_hub_blueprints`
+        - /companies: all routes for managing the company data
+        - /interviews: all routes for managing the interview data
+        - /resumes: all routes for managing the resume data and a route to find all students for the purposes of finding their resumes
+        - /users: for all other routes having to do with users
 - SQL files for our data model and data base in the `./database-files` directory
 
 
@@ -20,7 +33,7 @@ Next run the following lines of code in the terminal
 Finally, open the browser of your choice to http://localhost:8501
 
 # Authors
-This project was built by Dylan Cerenov,Nicholas Mamisashvili, Ryan Tietjen, Aidan Gilchrist, and Daniel Kaplan
+This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Aidan Gilchrist, and Daniel Kaplan
 
  
  
