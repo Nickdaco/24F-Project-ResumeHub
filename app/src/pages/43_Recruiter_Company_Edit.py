@@ -16,7 +16,10 @@ st.header('Update Company Information:')
 # student_id = "INVALID"
 # for user in all_users:
 #     if user["Name"] == "Anna Bell":
-#         student_id = user["UUID"]
+#         company_id = user["UUID"]
+
+# recruiter = requests.get(f'http://api:4000/u/users').json()
+
 
 def generate_final_json():
     return {
