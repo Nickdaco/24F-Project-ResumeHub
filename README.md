@@ -27,13 +27,14 @@ Currently, there are three major components which will each run in their own Doc
         - /users: for all other routes having to do with users
 - SQL files for our data model and data base in the `./database-files` directory
 
-
 # Running the app
-In order to locally host the website you must first pull this repo. Locate the /api/.env.template file and remove '.template'. Supply a password of your choice for example 'Money123!' in the MYSQL_ROOT_PASSWORD field. 
+
+In order to locally host the website you must first pull this repo. Locate the /api/.env.template file and remove '.template'. Supply a password of your choice for example 'Money123!' in the MYSQL_ROOT_PASSWORD field.
 Next run the following lines of code in the terminal
- - docker compose build 
- - docker compose up -d
-Finally, open the browser of your choice to http://localhost:8501
+
+- docker compose build
+- docker compose up -d
+  Finally, open the browser of your choice to http://localhost:8501
 
 # Authors
 This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Aidan Gilchrist, and Daniel Kaplan
@@ -41,3 +42,5 @@ This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Ai
 # UUID Issues
 We used UUID for the user in order to make the app as scaleable as possible. Unfortunately the UUID changes each time the docker container restarts. Due to this we were unable to set the userId as part of the login, we developed a workaround to search for the userid by name which would not be done in a fully fleshed out version of this app.
  
+
+This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Aidan Gilchrist, and Daniel Kaplan
