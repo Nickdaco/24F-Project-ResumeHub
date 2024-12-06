@@ -27,4 +27,3 @@ if st.button("Delete Company"):
     except requests.exceptions.HTTPError as err:
         st.error(f"Error: {err}")
     
-
