@@ -41,8 +41,3 @@ This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Ai
 # UUID Issues
 We used UUID for the user in order to make the app as scaleable as possible. Unfortunately the UUID changes each time the docker container restarts. Due to this we were unable to set the userId as part of the login, we developed a workaround to search for the userid by name which would not be done in a fully fleshed out version of this app.
  
-
-This project was built by Dylan Cerenov, Nicholas Mamisashvili, Ryan Tietjen, Aidan Gilchrist, and Daniel Kaplan
-
- 
- 
