@@ -12,15 +12,6 @@ SideBarLinks()
 st.header(f"Hi, {st.session_state['first_name']}.")
 st.header('Update Company Information:')
 
-# all_users = requests.get(f'http://api:4000/u/users').json()
-# student_id = "INVALID"
-# for user in all_users:
-#     if user["Name"] == "Anna Bell":
-#         company_id = user["UUID"]
-
-# recruiter = requests.get(f'http://api:4000/u/users').json()
-
-
 def generate_final_json():
     return {
         "Id": st.session_state.Id,
